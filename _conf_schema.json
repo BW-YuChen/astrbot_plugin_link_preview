@@ -1,0 +1,56 @@
+{
+  "enable_github": {
+    "description": "启用 GitHub 仓库链接预览",
+    "type": "bool",
+    "default": true,
+    "hint": "识别 github.com/{owner}/{repo} 链接并出卡片图。GitHub 匿名接口限额 60 次/小时/IP，插件内置内存缓存（仓库数据 10 分钟、贡献者数 6 小时），正常群聊用量完全够。"
+  },
+  "enable_bilibili": {
+    "description": "启用 B 站视频链接预览",
+    "type": "bool",
+    "default": true,
+    "hint": "识别 bilibili.com/video/BVxxxx、av 号以及 b23.tv 短链并出卡片图（标题 / 封面 / UP主 / 点赞 投币 收藏 观看）。"
+  },
+  "enable_generic": {
+    "description": "启用通用网页卡片（任意链接）",
+    "type": "bool",
+    "default": true,
+    "hint": "除 GitHub 仓库 / B 站视频之外的 http(s) 链接（github.io Pages、博客、文档站等），抓页面 og 标签出一张「标题 + 封面 + 描述 + 链接」的通用卡片。关闭后未识别的链接回到「完全不理」。直链文件（.zip/.png/.pdf 等）不会抓。"
+  },
+  "cache_minutes": {
+    "description": "接口结果缓存时长（分钟）",
+    "type": "int",
+    "default": 10,
+    "hint": "插件向平台取数据的缓存时长，默认 10 分钟，范围 1 分钟 ~ 1 天。贡献者数变化慢，按同一比例放大（默认 6 小时）。调大可省请求配额，调小则数据更新鲜。"
+  },
+  "card_ttl_hours": {
+    "description": "卡片图保留时长（小时）",
+    "type": "int",
+    "default": 12,
+    "hint": "每张链接卡片图在磁盘上只保留这么久，过期由后台任务自动删除（默认 12 小时）。头像 / 封面这类可复用素材不按这个时长清，只在缓存超上限时按最久未使用淘汰。"
+  },
+  "cache_max_mb": {
+    "description": "插件缓存上限（MB）",
+    "type": "int",
+    "default": 256,
+    "hint": "整个插件缓存目录超过这个体积时，按「最久未使用」从旧到新清理，直到降到 90% 以内（留出余量，避免每次调用都反复触发）。当前任务正在使用的文件（正在生成 / 发送中的卡片、10 分钟内新写的文件）一律不删。"
+  },
+  "cleanup_minutes": {
+    "description": "自动清理间隔（分钟）",
+    "type": "int",
+    "default": 30,
+    "hint": "后台清理任务的运行间隔，插件启动时也会先清一轮。最短按 5 分钟执行（填更小也按 5 分钟算）。"
+  },
+  "cooldown_seconds": {
+    "description": "同一用户两次解析的最小间隔（秒）",
+    "type": "int",
+    "default": 5,
+    "hint": "防止有人刷屏狂发链接把第三方接口打挂。0 表示不限制。"
+  },
+  "silent_on_error": {
+    "description": "抓取 / 渲染失败时静默不回复",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后：链接不存在、接口挂了、出图失败都只在 AstrBot 日志里记一笔，群里不回话。默认关闭（失败会在群里回一条简短原因），跑稳定后可以自己打开。排障时也可以直接发 /链接诊断 看每一环的状态。"
+  }
+}

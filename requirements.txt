@@ -1,0 +1,3 @@
+# 卡片图渲染需要 Pillow（AstrBot 本体通常已自带）。
+# 抓取层仅用 Python 标准库（urllib / json / re）。
+Pillow>=9.2

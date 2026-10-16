@@ -1,0 +1,12 @@
+name: astrbot_plugin_link_preview
+display_name: 链接预览卡片
+desc: 群成员 @机器人 发送链接，机器人将其展开为预览卡片图回复。当前支持 GitHub 仓库与 B 站视频（含 b23.tv 短链）。
+short_desc: GitHub / B 站链接展开成预览卡片图
+version: 1.0.1
+author: Firefly_IV
+repo: https://github.com/BW-YuChen/astrbot_plugin_link_preview
+support_platforms:
+  - qq_official
+  - qq_official_webhook
+  - aiocqhttp
+astrbot_version: ">=4.16,<5"
